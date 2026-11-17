@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Meu Jardim</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌱%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#2d6a4f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf1e4;--card:#fbfdf8;--ink:#17261c;--mut:#5f7366;--g:#2d6a4f;--gd:#1b4332;--lime:#a3d15c;--water:#2f7fa3;--bad:#d1603d;--line:#d5e0cc;--r:18px}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a13;--card:#17261c;--ink:#e8f1e3;--mut:#93a89a;--g:#6fbf8e;--gd:#a3d15c;--line:#264233;--water:#6cb8d8}}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.5 Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.1}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1000px;margin:0 auto;padding:16px}
+.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.top h1{font-size:1.9rem;font-weight:800;color:var(--gd);flex:1}
+button,.btn{font:inherit;font-weight:700;border:0;border-radius:999px;padding:10px 18px;cursor:pointer;background:var(--g);color:#fff}
+button.sec{background:transparent;color:var(--g);box-shadow:inset 0 0 0 2px var(--line)}
+button.danger{background:transparent;color:var(--bad);box-shadow:inset 0 0 0 2px var(--line)}
+button.ic{padding:8px 12px}
+button:disabled{opacity:.6}
+:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+input,textarea,select{font:inherit;width:100%;padding:11px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+label{display:block;font-weight:700;font-size:.9rem;margin:12px 0 4px}
+label.ck{display:flex;gap:8px;align-items:center;font-weight:500;margin:10px 0}
+label.ck input{width:20px;height:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{background:var(--card);border-radius:var(--r);overflow:hidden;display:block;box-shadow:0 1px 0 var(--line),0 6px 18px -10px rgba(23,38,28,.35)}
+.ph{aspect-ratio:4/3;background:linear-gradient(135deg,var(--line),var(--bg));display:grid;place-items:center;font-size:3rem}
+.ph img{width:100%;height:100%;object-fit:cover}
+.cb{padding:12px 14px 14px}
+.cb b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;display:block}
+small{color:var(--mut)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tags span{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--bg);color:var(--g)}
+.tags .w{color:var(--water)}.tags .bad{background:var(--bad);color:#fff}
+.search{max-width:360px;flex:1 1 200px}
+.empty{text-align:center;padding:48px 16px;color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0}
+.stat{background:var(--card);border-radius:14px;padding:12px 14px}
+.stat b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;display:block;color:var(--g)}
+.box{background:var(--card);border-radius:var(--r);padding:16px;margin:14px 0}
+svg.ch{width:100%;height:auto;display:block}
+.tl{display:grid;gap:12px}
+.en{display:flex;gap:14px;background:var(--card);border-radius:var(--r);padding:12px}
+.en img{width:96px;height:96px;object-fit:cover;border-radius:12px;cursor:zoom-in;flex:none}
+.en .ei{flex:1;min-width:0}
+.en p{margin-top:4px;overflow-wrap:anywhere}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+dialog{border:0;border-radius:22px;padding:20px;width:min(480px,94vw);max-height:92vh;background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(10,25,15,.55)}
+dialog.pic{width:min(900px,96vw);padding:8px;background:#000}
+dialog.pic img{width:100%;max-height:86vh;object-fit:contain;border-radius:16px}
+.login{max-width:380px;margin:12vh auto 0;text-align:center}
+.login h1{font-size:2.6rem;color:var(--gd)}
+.login form{text-align:left;background:var(--card);padding:20px;border-radius:var(--r);margin-top:18px}
+.err{color:var(--bad);font-weight:700;margin-top:10px;min-height:1.4em}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--gd);color:#fff;padding:10px 18px;border-radius:99px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .25s}
+#toast.on{opacity:1}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body><div id="app" class="wrap"></div><dialog id="dlg"></dialog><div id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const sb=supabase.createClient('https://chxiyxsjfdapiobjorzu.supabase.co','sb_publishable_wxrRaStVVzDVZPpqNtJWwg_j-m4itK6');
+const $=s=>document.querySelector(s),dlg=$('#dlg'),app=$('#app');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const S={user:null,plants:[],entries:[],urls:{}};
+const today=()=>new Date().toLocaleDateString('sv');
+const dd=s=>Math.round((new Date(today()+'T00:00')-new Date(s+'T00:00'))/864e5);
+const fmt=s=>new Date(s+'T00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
+const ago=d=>d<=0?'hoje':d==1?'ontem':`há ${d} dias`;
+const ents=id=>S.entries.filter(e=>e.plant_id==id);
+const img=e=>e.photo_path&&S.urls[e.photo_path];
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2600)}
+
+async function load(){
+  const [p,e]=await Promise.all([sb.from('plants').select('*').order('name'),
+    sb.from('entries').select('*').order('entry_date',{ascending:false}).order('created_at',{ascending:false})]);
+  if(p.error||e.error){toast('Erro ao carregar os dados');console.error(p.error||e.error);return}
+  S.plants=p.data;S.entries=e.data;
+  const paths=S.entries.map(x=>x.photo_path).filter(x=>x&&!S.urls[x]);
+  if(paths.length){const {data}=await sb.storage.from('plant-photos').createSignedUrls(paths,7200);
+    (data||[]).forEach(d=>d.signedUrl&&(S.urls[d.path]=d.signedUrl))}
+  render()
+}
+function render(){
+  if(!S.user)return app.innerHTML=`<div class="login"><h1>🌱 Meu Jardim</h1><small>Entre para ver suas plantas</small>
+  <form data-f="login"><label for="em">E-mail</label><input id="em" name="em" type="email" required autocomplete="username">
+  <label for="pw">Senha</label><input id="pw" name="pw" type="password" required autocomplete="current-password">
+  <div class="err" id="err"></div><button style="width:100%">Entrar</button></form></div>`;
+  const m=location.hash.match(/^#\/p\/(.+)$/),p=m&&S.plants.find(x=>x.id==m[1]);
+  app.innerHTML=p?detail(p):home();window.scrollTo(0,0)
+}
+function water(p,es){
+  const w=es.find(e=>e.watered);
+  if(!w)return p.water_every?'<span class="w">💧 sem rega registrada</span>':'';
+  const d=dd(w.entry_date);if(!p.water_every)return `<span class="w">💧 ${ago(d)}</span>`;
+  const r=p.water_every-d;
+  return r<0?`<span class="bad">💧 atrasada ${-r}d</span>`:r==0?`<span class="bad">💧 regar hoje</span>`:`<span class="w">💧 regar em ${r}d</span>`
+}
+function home(){
+  const late=S.plants.filter(p=>{const w=ents(p.id).find(e=>e.watered);return p.water_every&&w&&p.water_every-dd(w.entry_date)<=0}).length;
+  return `<div class="top"><h1>🌱 Meu Jardim</h1><button data-a="newp">+ Nova planta</button><button class="sec" data-a="out">Sair</button></div>
+  ${S.plants.length?`<div class="top"><input class="search" type="search" placeholder="Buscar planta…" aria-label="Buscar" oninput="filt(this.value)">
+  <small>${S.plants.length} planta${S.plants.length>1?'s':''}${late?` · <b style="color:var(--bad)">${late} para regar</b>`:''}</small></div>
+  <div class="grid">${S.plants.map(card).join('')}</div>`:
+  `<div class="empty"><div style="font-size:4rem">🪴</div><h2>Seu jardim está vazio</h2><p>Cadastre sua primeira planta para começar a acompanhar o crescimento.</p></div>`}`
+}
+function filt(q){q=q.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.s.includes(q)?'':'none')}
+function card(p){
+  const es=ents(p.id),f=es.find(img),h=es.find(e=>e.height_cm!=null);
+  return `<a class="card" href="#/p/${p.id}" data-s="${esc((p.name+' '+(p.species||'')).toLowerCase())}">
+  <div class="ph">${f?`<img loading="lazy" alt="${esc(p.name)}" src="${S.urls[f.photo_path]}">`:'🪴'}</div>
+  <div class="cb"><b>${esc(p.name)}</b><small>${esc(p.species||'')}</small>
+  <div class="tags">${h?`<span>📏 ${h.height_cm} cm</span>`:''}${water(p,es)}</div></div></a>`
+}
+function chart(es){
+  const pts=es.filter(e=>e.height_cm!=null).slice().reverse();
+  if(pts.length<2)return '<small>Registre a altura em pelo menos 2 datas para ver o gráfico de crescimento.</small>';
+  const W=600,H=200,P=34,t=pts.map(e=>+new Date(e.entry_date)),t0=t[0],t1=t[t.length-1]||1,hs=pts.map(e=>+e.height_cm),mx=Math.max(...hs)*1.1,
+  X=i=>P+(t1==t0?0:(t[i]-t0)/(t1-t0))*(W-P-12),Y=v=>H-24-(v/mx)*(H-40);
+  const L=pts.map((_,i)=>`${X(i)},${Y(hs[i])}`).join(' ');
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Gráfico de altura ao longo do tempo">
+  <line x1="${P}" y1="${H-24}" x2="${W-8}" y2="${H-24}" stroke="var(--line)"/>
+  <text x="2" y="${Y(mx/1.1)+4}" font-size="11" fill="var(--mut)">${Math.max(...hs)}cm</text>
+  <polygon points="${X(0)},${H-24} ${L} ${X(pts.length-1)},${H-24}" fill="var(--lime)" opacity=".25"/>
+  <polyline points="${L}" fill="none" stroke="var(--g)" stroke-width="3" stroke-linejoin="round"/>
+  ${pts.map((e,i)=>`<circle cx="${X(i)}" cy="${Y(hs[i])}" r="4.5" fill="var(--g)"><title>${fmt(e.entry_date)}: ${e.height_cm} cm</title></circle>`).join('')}
+  <text x="${P}" y="${H-6}" font-size="11" fill="var(--mut)">${fmt(pts[0].entry_date)}</text>
+  <text x="${W-8}" y="${H-6}" font-size="11" text-anchor="end" fill="var(--mut)">${fmt(pts[pts.length-1].entry_date)}</text></svg>`
+}
+function detail(p){
+  const es=ents(p.id),hs=es.filter(e=>e.height_cm!=null),cur=hs[0],first=hs[hs.length-1];
+  const since=p.acquired_on?dd(p.acquired_on):null;
+  return `<div class="top"><a href="#" class="btn sec" style="background:none;color:var(--g);box-shadow:inset 0 0 0 2px var(--line)">← Voltar</a><h1>${esc(p.name)}</h1>
+  <button class="sec ic" data-a="editp" data-id="${p.id}">Editar</button><button class="danger ic" data-a="delp" data-id="${p.id}">Excluir</button></div>
+  <small>${esc(p.species||'')}${p.notes?` · ${esc(p.notes)}`:''}</small>
+  <div class="stats">
+   <div class="stat"><b>${cur?cur.height_cm+' cm':'—'}</b><small>altura atual</small></div>
+   <div class="stat"><b>${cur&&first&&cur!==first?'+'+(cur.height_cm-first.height_cm).toFixed(1)+' cm':'—'}</b><small>crescimento total</small></div>
+   <div class="stat"><b>${since!=null?since+' d':'—'}</b><small>com você</small></div>
+   <div class="stat"><b>${es.length}</b><small>registros</small></div></div>
+  <div class="tags" style="margin:0 0 6px">${water(p,es)}${(()=>{const f=es.find(e=>e.fertilized);return f?`<span>🌿 adubada ${ago(dd(f.entry_date))}</span>`:''})()}</div>
+  <div class="box"><h3 style="margin-bottom:8px">Crescimento</h3>${chart(es)}</div>
+  <div class="top"><h2 style="flex:1">Diário</h2><button data-a="newe" data-id="${p.id}">+ Novo registro</button></div>
+  <div class="tl">${es.length?es.map(en).join(''):'<div class="empty">Nenhum registro ainda. Adicione o primeiro com foto e altura.</div>'}</div>`
+}
+function en(e){
+  return `<div class="en">${img(e)?`<img loading="lazy" alt="Foto de ${fmt(e.entry_date)}" src="${S.urls[e.photo_path]}" data-a="zoom">`:''}
+  <div class="ei"><b>${fmt(e.entry_date)}</b><div class="tags">${e.height_cm!=null?`<span>📏 ${e.height_cm} cm</span>`:''}${e.watered?'<span class="w">💧 regada</span>':''}${e.fertilized?'<span>🌿 adubada</span>':''}</div>
+  ${e.notes?`<p>${esc(e.notes)}</p>`:''}<div class="row"><button class="sec ic" data-a="edite" data-id="${e.id}">Editar</button><button class="danger ic" data-a="dele" data-id="${e.id}">Excluir</button></div></div></div>`
+}
+function open(html){dlg.className='';dlg.innerHTML=html;dlg.showModal()}
+const actions=`<div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="sec" data-a="close">Cancelar</button><button>Salvar</button></div>`;
+function plantForm(p={}){
+  open(`<h2>${p.id?'Editar planta':'Nova planta'}</h2><form data-f="plant" data-id="${p.id||''}">
+  <label for="n">Nome</label><input id="n" name="name" required value="${esc(p.name)}" placeholder="Ex.: Samambaia da sala">
+  <label for="s">Espécie</label><input id="s" name="species" value="${esc(p.species)}" placeholder="Ex.: Nephrolepis exaltata">
+  <label for="a">Data em que ganhou/comprou</label><input id="a" name="acquired_on" type="date" value="${p.acquired_on||''}">
+  <label for="we">Regar a cada quantos dias? (opcional)</label><input id="we" name="water_every" type="number" min="1" value="${p.water_every||''}">
+  <label for="no">Observações (local, luz, solo…)</label><textarea id="no" name="notes" rows="3">${esc(p.notes)}</textarea>${actions}</form>`)
+}
+function entryForm(pid,e={}){
+  open(`<h2>${e.id?'Editar registro':'Novo registro'}</h2><form data-f="entry" data-pid="${pid}" data-id="${e.id||''}">
+  <label for="d">Data</label><input id="d" name="date" type="date" required value="${e.entry_date||today()}">
+  <label for="h">Altura (cm)</label><input id="h" name="h" type="number" step="0.1" min="0" value="${e.height_cm??''}">
+  <label class="ck"><input type="checkbox" name="w" ${e.watered?'checked':''}> 💧 Reguei</label>
+  <label class="ck"><input type="checkbox" name="f" ${e.fertilized?'checked':''}> 🌿 Adubei</label>
+  <label for="o">Observações (folhas novas, pragas, flores…)</label><textarea id="o" name="n" rows="3">${esc(e.notes)}</textarea>
+  <label for="ph">Foto ${img(e)?'(já tem uma; escolha outra para trocar)':''}</label><input id="ph" name="photo" type="file" accept="image/*">${actions}</form>`)
+}
+async function shrink(file){
+  const b=await createImageBitmap(file),k=Math.min(1,1280/Math.max(b.width,b.height)),c=document.createElement('canvas');
+  c.width=Math.round(b.width*k);c.height=Math.round(b.height*k);c.getContext('2d').drawImage(b,0,0,c.width,c.height);
+  return new Promise(r=>c.toBlob(r,'image/jpeg',.82))
+}
+async function saveEntry(fd,pid,id){
+  const old=S.entries.find(x=>x.id==id);let path=old?.photo_path||null;const file=fd.get('photo');
+  if(file&&file.size){
+    const np=`${S.user.id}/${pid}/${Date.now()}.jpg`,up=await sb.storage.from('plant-photos').upload(np,await shrink(file),{contentType:'image/jpeg'});
+    if(up.error)throw up.error;if(path)await sb.storage.from('plant-photos').remove([path]);path=np}
+  const row={plant_id:pid,entry_date:fd.get('date'),height_cm:fd.get('h')?+fd.get('h'):null,watered:fd.has('w'),fertilized:fd.has('f'),notes:fd.get('n')||null,photo_path:path};
+  const r=id?await sb.from('entries').update(row).eq('id',id):await sb.from('entries').insert(row);if(r.error)throw r.error
+}
+async function savePlant(fd,id){
+  const row={name:fd.get('name'),species:fd.get('species')||null,acquired_on:fd.get('acquired_on')||null,water_every:fd.get('water_every')?+fd.get('water_every'):null,notes:fd.get('notes')||null};
+  const r=id?await sb.from('plants').update(row).eq('id',id):await sb.from('plants').insert(row);if(r.error)throw r.error
+}
+document.addEventListener('submit',async ev=>{
+  const f=ev.target,k=f.dataset.f;if(!k)return;ev.preventDefault();const fd=new FormData(f),btn=f.querySelector('button:not(.sec)');btn.disabled=true;
+  try{
+    if(k=='login'){const {error}=await sb.auth.signInWithPassword({email:fd.get('em'),password:fd.get('pw')});
+      if(error){$('#err').textContent='E-mail ou senha incorretos.';btn.disabled=false}return}
+    if(k=='plant')await savePlant(fd,f.dataset.id);else await saveEntry(fd,f.dataset.pid,f.dataset.id);
+    dlg.close();toast('Salvo!');await load()
+  }catch(e){console.error(e);toast('Não foi possível salvar. Tente de novo.');btn.disabled=false}
+});
+document.addEventListener('click',async ev=>{
+  const t=ev.target.closest('[data-a]');if(!t){if(ev.target===dlg)dlg.close();return}
+  const a=t.dataset.a,id=t.dataset.id;
+  if(a=='close')dlg.close();
+  else if(a=='out')await sb.auth.signOut();
+  else if(a=='newp')plantForm();
+  else if(a=='editp')plantForm(S.plants.find(p=>p.id==id));
+  else if(a=='newe')entryForm(id);
+  else if(a=='edite'){const e=S.entries.find(x=>x.id==id);entryForm(e.plant_id,e)}
+  else if(a=='zoom'){dlg.className='pic';dlg.innerHTML=`<img alt="Foto ampliada" src="${t.src}">`;dlg.showModal()}
+  else if(a=='dele'&&confirm('Excluir este registro?')){const e=S.entries.find(x=>x.id==id);
+    if(e.photo_path)await sb.storage.from('plant-photos').remove([e.photo_path]);await sb.from('entries').delete().eq('id',id);toast('Registro excluído');load()}
+  else if(a=='delp'&&confirm('Excluir esta planta e todos os registros e fotos dela?')){
+    const ps=ents(id).map(e=>e.photo_path).filter(Boolean);if(ps.length)await sb.storage.from('plant-photos').remove(ps);
+    await sb.from('plants').delete().eq('id',id);location.hash='';toast('Planta excluída');load()}
+});
+window.addEventListener('hashchange',render);
+sb.auth.onAuthStateChange((_,s)=>{const had=S.user;S.user=s?.user||null;if(S.user)load();else{S.plants=[];S.entries=[];render()}});
+</script></body></html>
